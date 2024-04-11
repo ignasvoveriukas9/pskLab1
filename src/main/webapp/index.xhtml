@@ -6,6 +6,10 @@
 >
 <h:head/>
 <h:body>
+    #{pirmasKomponentas.getClass().name}
+    #{transactionalComponentOne.doSomething()}
+    <h2>pirmo CDI komponento test</h2>
+    <h2>#{pirmasKomponentas.sakykLabas()}</h2>
     <h2>Teams:</h2>
     <ol>
         <ui:repeat value="#{teams.allTeams}" var="team">
