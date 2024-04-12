@@ -9,11 +9,14 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
+@NamedQueries({
+        @NamedQuery(name = "CarParts.findAll", query = "select a from CarPart as a")
+})
 @Getter @Setter
 public class CarPart {
     @Id
     @GeneratedValue
-    private Long id;
+    private Integer id;
 
 
     @Basic(optional = false)
