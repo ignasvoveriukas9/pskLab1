@@ -21,5 +21,18 @@
         <h:commandButton value="Add new team" actionListener="#{teams.createTeam}" action="index?faces-redirect=true"/>
     </h:form>
     <h:link outcome="myBatis/teams" value="MyBatis implementation"/>
+
+    <h2>CarOwner:</h2>
+    <ol>
+        <ui:repeat value="#{carOwners.allCarOwners}" var="carOwner">
+            <li><h:link value="#{carOwner.name}" outcome="cars?carOwnerId=#{carOwner.id}" /></li>
+        </ui:repeat>
+    </ol>
+    <h:form>
+        <h:inputText value="#{carOwners.carOwnerToCreate.name}" required="true" />
+        <h:inputText value="#{carOwners.carOwnerToCreate.surname}" required="true" />
+        <h:inputText value="#{carOwners.carOwnerToCreate.phoneNumber}" required="false" />
+        <h:commandButton value="Add new car owner" actionListener="#{carOwners.createCarOwner}" action="index?faces-redirect=true"/>
+    </h:form>
 </h:body>
 </html>

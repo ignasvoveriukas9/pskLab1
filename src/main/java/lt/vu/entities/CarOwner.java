@@ -9,11 +9,12 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
+@NamedQuery(name = "CarOwner.findAll", query = "SELECT co FROM CarOwner co")
 @Getter @Setter
 public class CarOwner {
     @Id
     @GeneratedValue
-    private Long id;
+    private Integer id;
 
     @Basic(optional = false)
     private String name;

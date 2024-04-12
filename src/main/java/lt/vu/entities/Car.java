@@ -13,7 +13,7 @@ import java.util.Objects;
 public class Car {
     @Id
     @GeneratedValue
-    private Long id;
+    private Integer id;
 
     @Basic(optional = false)
     private String make;
