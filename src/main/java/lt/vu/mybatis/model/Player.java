@@ -99,4 +99,8 @@ public class Player {
     public void setTeamId(Integer teamId) {
         this.teamId = teamId;
     }
+
+    // added manually
+
+    private Team team;
 }

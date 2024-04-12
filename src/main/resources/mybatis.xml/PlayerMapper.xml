@@ -10,6 +10,13 @@
     <id column="ID" jdbcType="INTEGER" property="id" />
     <result column="NAME" jdbcType="VARCHAR" property="name" />
     <result column="TEAM_ID" jdbcType="INTEGER" property="teamId" />
+
+    <!-- Association mapping for Team entity -->
+    <association property="team" javaType="lt.vu.mybatis.model.Team">
+      <id column="ID" jdbcType="INTEGER" property="id" />
+      <result column="NAME" jdbcType="VARCHAR" property="name" />
+      <!-- Add more result mappings for Team entity properties if needed -->
+    </association>
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     <!--
