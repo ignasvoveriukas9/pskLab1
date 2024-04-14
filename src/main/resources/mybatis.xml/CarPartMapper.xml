@@ -9,6 +9,11 @@
     -->
     <id column="ID" jdbcType="BIGINT" property="id" />
     <result column="NAME" jdbcType="VARCHAR" property="name" />
+
+    <collection property="cars" javaType="ArrayList"
+                ofType="lt.vu.mybatis.model.Car" column="id"
+                select="selectCarsForCarPart"/>
+
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     <!--
@@ -56,5 +61,13 @@
     -->
     select ID, NAME
     from PUBLIC.CARPART
+  </select>
+
+  <!-- Manually added for ManyToMany -->
+  <select id="selectCarsForCarPart" resultType="lt.vu.mybatis.model.Car">
+    SELECT c.id, c.make, c.model, c.carowner_id
+    FROM public.car c
+           JOIN public.carpart_car sc on c.id = sc.car_id
+    WHERE sc.carpart_id = #{id,jdbcType=INTEGER}
   </select>
 </mapper>

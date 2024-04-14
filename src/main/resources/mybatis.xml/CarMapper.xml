@@ -20,6 +20,10 @@
       <result column="SURNAME" jdbcType="VARCHAR" property="surname" />
       <!-- Add more result mappings for Team entity properties if needed -->
     </association>
+
+    <collection property="carParts" javaType="ArrayList"
+                ofType="lt.vu.mybatis.model.CarPart" column="id"
+                select="selectCarPartsForCar"/>
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     <!--
@@ -71,5 +75,13 @@
     -->
     select ID, MAKE, MODEL, CAROWNER_ID
     from PUBLIC.CAR
+  </select>
+
+  <!-- Manually added for ManyToMany -->
+  <select id="selectCarPartsForCar" resultType="lt.vu.mybatis.model.CarPart">
+    SELECT c.id, c.name
+    FROM public.carpart c
+           JOIN public.carpart_car sc on c.id = sc.carpart_id
+    WHERE sc.car_id = #{id,jdbcType=INTEGER}
   </select>
 </mapper>

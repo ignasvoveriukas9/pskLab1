@@ -1,5 +1,7 @@
 package lt.vu.mybatis.model;
 
+import java.util.List;
+
 public class CarPart {
     /**
      *
@@ -66,4 +68,12 @@ public class CarPart {
     public void setName(String name) {
         this.name = name;
     }
+
+    // added manually
+
+    private List<Car> cars;
+
+    public List<Car> getCars() { return cars; }
+
+    public void setCars(List<Car> cars) { this.cars = cars; }
 }

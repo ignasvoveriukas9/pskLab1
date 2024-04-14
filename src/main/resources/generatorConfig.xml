@@ -33,5 +33,6 @@
         <table schema="PUBLIC" tableName="CARPART">
             <generatedKey column="ID" identity="true" sqlStatement="JDBC" />
         </table>
+        <table schema="PUBLIC" tableName="CARPART_CAR"> </table>
     </context>
 </generatorConfiguration>
