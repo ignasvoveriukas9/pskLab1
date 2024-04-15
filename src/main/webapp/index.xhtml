@@ -25,7 +25,7 @@
     <h2>CarOwner:</h2>
     <ol>
         <ui:repeat value="#{carOwners.allCarOwners}" var="carOwner">
-            <li><h:link value="#{carOwner.name}" outcome="cars?carOwnerId=#{carOwner.id}" /></li>
+            <li><h:link value="#{carOwner.name} #{carOwner.surname} #{carOwner.phoneNumber}" outcome="cars?carOwnerId=#{carOwner.id}" /></li>
         </ui:repeat>
     </ol>
     <h:form>
