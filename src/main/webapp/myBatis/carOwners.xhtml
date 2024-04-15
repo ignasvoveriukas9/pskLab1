@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+>
+<h:head/>
+<h:body>
+    <h2>CarOwners:</h2>
+    <ol>
+        <ui:repeat value="#{carOwnersMyBatis.allCarOwners}" var="carOwner">
+            <li><h:link value="#{carOwner.name}" outcome="cars?carOwnerId=#{carOwner.id}" /></li>
+        </ui:repeat>
+    </ol>
+    <h:form>
+        <h:inputText value="#{carOwnersMyBatis.carOwnerToCreate.name}" required="true" />
+        <h:inputText value="#{carOwnersMyBatis.carOwnerToCreate.surname}" required="true" />
+        <h:inputText value="#{carOwnersMyBatis.carOwnerToCreate.phoneNumber}" required="false" />
+        <h:commandButton value="Add new car owner" action="#{carOwnersMyBatis.createCarOwner}" />
+    </h:form>
+    <h:link value="Back to index" outcome="/index"/>
+</h:body>
+</html>

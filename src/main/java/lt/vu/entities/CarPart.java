@@ -15,7 +15,7 @@ import java.util.Objects;
 @Getter @Setter
 public class CarPart {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
 

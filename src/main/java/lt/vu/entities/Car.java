@@ -12,7 +12,7 @@ import java.util.Objects;
 @Getter @Setter
 public class Car {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Basic(optional = false)

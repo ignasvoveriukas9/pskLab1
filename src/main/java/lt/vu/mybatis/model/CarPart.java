@@ -10,7 +10,7 @@ public class CarPart {
      *
      * @mbg.generated Fri Apr 12 21:42:49 EEST 2024
      */
-    private Long id;
+    private Integer id;
 
     /**
      *
@@ -29,7 +29,7 @@ public class CarPart {
      *
      * @mbg.generated Fri Apr 12 21:42:49 EEST 2024
      */
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -41,7 +41,7 @@ public class CarPart {
      *
      * @mbg.generated Fri Apr 12 21:42:49 EEST 2024
      */
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
