@@ -11,6 +11,10 @@
     <result column="NAME" jdbcType="VARCHAR" property="name" />
     <result column="PHONENUMBER" jdbcType="VARCHAR" property="phoneNumber" />
     <result column="SURNAME" jdbcType="VARCHAR" property="surname" />
+
+    <collection property="cars" javaType="ArrayList"
+    ofType="lt.vu.mybatis.model.Car" column="id"
+    select="selectCarsForCarOwner"/>
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     <!--
@@ -62,5 +66,12 @@
     -->
     select ID, NAME, PHONENUMBER, SURNAME
     from PUBLIC.CAROWNER
+  </select>
+
+  <select id="selectCarsForCarOwner" resultType="lt.vu.mybatis.model.Car">
+    SELECT c.id, c.make, c.car_model, c.carOwner_id
+    FROM public.car c
+           <!--JOIN public.carOwner sc on c.id = sc.carOwner_id-->
+    WHERE c.carOwner_id = #{id,jdbcType=INTEGER}
   </select>
 </mapper>

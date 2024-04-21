@@ -1,5 +1,7 @@
 package lt.vu.mybatis.model;
 
+import java.util.List;
+
 public class CarOwner {
     /**
      *
@@ -132,4 +134,10 @@ public class CarOwner {
     public void setSurname(String surname) {
         this.surname = surname;
     }
+
+    private List<Car> cars;
+
+    public List<Car> getCars() { return cars; }
+
+    public void setCars(List<Car> cars) { this.cars = cars; }
 }

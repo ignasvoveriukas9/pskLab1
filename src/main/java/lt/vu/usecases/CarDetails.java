@@ -30,6 +30,9 @@ public class CarDetails {
     @Inject
     private CarPartsDAO carPartsDAO;
 
+    @Inject
+    private CarPartNameFinder carPartNameFinder;
+
     @Getter @Setter
     private Car car;
 
@@ -39,12 +42,20 @@ public class CarDetails {
     @Getter @Setter
     private Integer toAddCarPartId;
 
+    @Getter @Setter
+    private Integer searchResult;
+
+    public void search(){
+        searchResult = carPartNameFinder.findCarPartNameInList(car);
+    }
+
     @PostConstruct
     public void init(){
         Map<String, String> requestParameters =
                 FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
         Integer carId = Integer.parseInt(requestParameters.get("carId"));
         this.car = carsDAO.findOne(carId);
+        search();
     }
 
     @Transactional

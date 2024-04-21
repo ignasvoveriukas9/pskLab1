@@ -11,7 +11,7 @@
     <ol>
         <ui:repeat value="#{carDetailsMyBatis.car.carParts}" var="carPart">
             <li>
-                <h:link value="#{carPart.id} #{carPart.name}" outcome="partDetails?partId=#{carPart.id}" />
+                <h:link value="#{carPart.id} #{carPart.name} #{carPart.cars.size()}" outcome="partDetails?partId=#{carPart.id}" />
             </li>
         </ui:repeat>
     </ol>

@@ -19,6 +19,7 @@ public class Car {
     private String make;
 
     @Basic(optional = false)
+    @Column(name="CAR_MODEL")
     private String model;
 
     @ManyToOne
