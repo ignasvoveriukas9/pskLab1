@@ -35,5 +35,13 @@
         <h:commandButton value="Add new car owner" actionListener="#{carOwners.createCarOwner}" action="index?faces-redirect=true"/>
     </h:form>
     <h:link outcome="myBatis/carOwners" value="MyBatis implementation"/>
+    <br/>
+    <br/>
+    <h2>Car owner with most cars:</h2>
+    <ol>
+        <ui:repeat value="#{carOwners.carOwnersWithMostCars}" var="carOwner">
+            <li><h:link value="#{carOwner.name} #{carOwner.surname} #{carOwner.phoneNumber}" outcome="cars?carOwnerId=#{carOwner.id}" /></li>
+        </ui:repeat>
+    </ol>
 </h:body>
 </html>

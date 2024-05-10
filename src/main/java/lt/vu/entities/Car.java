@@ -26,6 +26,10 @@ public class Car {
     @JoinColumn(name="CAROWNER_ID")
     private CarOwner owner;
 
+    @Version
+    @Column(name = "OPT_LOCK_VERSION")
+    private Integer version;
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

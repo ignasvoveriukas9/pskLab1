@@ -1,6 +1,7 @@
 package lt.vu.persistence;
 
 import lt.vu.entities.CarPart;
+import lt.vu.entities.Player;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -37,5 +38,9 @@ public class CarPartsDAO {
 
     public CarPart findOne(Integer id) {
         return em.find(CarPart.class, id);
+    }
+
+    public CarPart update(CarPart carPart){
+        return em.merge(carPart);
     }
 }

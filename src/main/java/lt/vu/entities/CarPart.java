@@ -26,6 +26,10 @@ public class CarPart {
     @ManyToMany(mappedBy = "parts")
     private List<Car> cars;
 
+    @Version
+    @Column(name = "OPT_LOCK_VERSION")
+    private Integer version;
+
 
     @Override
     public boolean equals(Object o) {

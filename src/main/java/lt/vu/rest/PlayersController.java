@@ -26,6 +26,7 @@ public class PlayersController {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getById(@PathParam("id") final Integer id) {
+        System.out.println("/n/n/nget player controler/n/n/n");
         Player player = playersDAO.findOne(id);
         if (player == null) {
             return Response.status(Response.Status.NOT_FOUND).build();

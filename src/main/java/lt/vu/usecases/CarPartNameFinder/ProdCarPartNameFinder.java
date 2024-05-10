@@ -1,4 +1,4 @@
-package lt.vu.usecases;
+package lt.vu.usecases.CarPartNameFinder;
 
 
 import lt.vu.entities.Car;
@@ -6,37 +6,18 @@ import lt.vu.entities.CarPart;
 import lt.vu.persistence.CarPartsDAO;
 import lt.vu.persistence.CarsDAO;
 
-import javax.enterprise.context.SessionScoped;
+import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.inject.Default;
 import javax.inject.Inject;
-import javax.persistence.criteria.CriteriaBuilder;
-import java.io.Serializable;
+import javax.inject.Named;
 import java.util.ArrayList;
 import java.util.List;
 
 import java.util.HashSet;
 import java.util.Set;
 
-@SessionScoped
-public class CarPartNameFinder implements Serializable {
-/*
-    public int findCarPartNameInList(Car car) {
-        Set<Integer> carIdsWithMatchingParts = new HashSet<>();
-
-        // Iterate over each part of the provided car
-        for (CarPart carPart : car.getParts()) {
-            // Get the list of cars associated with the current car part
-            List<Integer> carIds = new ArrayList<Integer>();
-            for( Car carId: carPart.getCars()){
-                carIds.add(carId.getId());
-            }
-            // Add the car IDs to the set of car IDs with matching parts
-            carIdsWithMatchingParts.addAll(carIds);
-        }
-
-        // Return the number of unique car IDs with matching parts
-        return carIdsWithMatchingParts.size();
-    }
-    */
+@ApplicationScoped
+public class ProdCarPartNameFinder implements CarPartNameFinder {
 
     @Inject
     private CarPartsDAO carPartDAO;
@@ -59,6 +40,11 @@ public class CarPartNameFinder implements Serializable {
 
             // Add the car IDs to the set of car IDs with matching parts
             carIdsWithMatchingParts.addAll(carIds);
+        }
+
+        try {
+            Thread.sleep(3000); // Simulate intensive work
+        } catch (InterruptedException e) {
         }
 
         return carIdsWithMatchingParts.size();

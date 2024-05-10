@@ -8,15 +8,22 @@ import lt.vu.interceptors.LoggedInvocation;
 import lt.vu.persistence.CarOwnersDAO;
 import lt.vu.persistence.CarPartsDAO;
 import lt.vu.persistence.CarsDAO;
+import lt.vu.usecases.CarPartNameFinder.CarPartNameFinder;
 
 import javax.annotation.PostConstruct;
+import javax.enterprise.inject.Default;
 import javax.enterprise.inject.Model;
+import javax.enterprise.inject.Stereotype;
 import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
+import javax.inject.Named;
 import javax.persistence.OptimisticLockException;
 import javax.transaction.Transactional;
-import java.util.List;
+import java.lang.annotation.Documented;
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
+
 
 @Model
 public class CarDetails {
@@ -45,8 +52,10 @@ public class CarDetails {
     @Getter @Setter
     private Integer searchResult;
 
-    public void search(){
-        searchResult = carPartNameFinder.findCarPartNameInList(car);
+    @Transactional(Transactional.TxType.REQUIRES_NEW)
+    public void search() {
+        CompletableFuture.supplyAsync(() -> carPartNameFinder.findCarPartNameInList(car))
+                .thenAcceptAsync(this::setSearchResult);
     }
 
     @PostConstruct
@@ -55,7 +64,6 @@ public class CarDetails {
                 FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
         Integer carId = Integer.parseInt(requestParameters.get("carId"));
         this.car = carsDAO.findOne(carId);
-        search();
     }
 
     @Transactional

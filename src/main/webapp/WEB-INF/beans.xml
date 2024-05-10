@@ -9,4 +9,12 @@
     <interceptors>
         <class>lt.vu.interceptors.MethodLogger</class>
     </interceptors>
+
+    <decorators>
+        <class>lt.vu.usecases.CarCalculator.CarCalculatorDecorator</class>
+    </decorators>
+
+    <alternatives>
+        <class>lt.vu.usecases.CarPartNameFinder.MockCarPartNameFinder</class>
+    </alternatives>
 </beans>
