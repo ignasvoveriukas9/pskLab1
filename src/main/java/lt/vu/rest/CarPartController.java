@@ -10,6 +10,7 @@ import lt.vu.persistence.CarsDAO;
 import lt.vu.rest.contracts.CarDTO;
 import lt.vu.rest.contracts.CarPartDTO;
 import lt.vu.rest.contracts.PlayerDto;
+import lt.vu.services.ModifyCarPart;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.RequestScoped;
@@ -36,6 +37,10 @@ public class CarPartController {
     @Inject
     @Getter @Setter
     private CarsDAO carsDAO;
+
+    @Inject
+    @Getter @Setter
+    private ModifyCarPart modifyCarPart;
 
     @Path("/{id}")
     @GET
@@ -128,5 +133,37 @@ public class CarPartController {
         }
     }
 
+
+    @Path("/OptLockSlow/{id}")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getOptLockSlow(@PathParam("id") final Integer id) {
+        System.out.println("optLock called");
+        try {
+            CarPart part = modifyCarPart.modifyCarPartSlow(id, "slow");
+        } catch (OptimisticLockException ole) {
+            return Response.status(Response.Status.CONFLICT).build();
+        } catch (Exception e) {
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+        }
+
+        return Response.ok().build();
+    }
+
+    @Path("/OptLockFast/{id}")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getOptLockFast(@PathParam("id") final Integer id) {
+        System.out.println("optLock called");
+        try {
+            CarPart part = modifyCarPart.modifyCarPartFast(id, "fast");
+        } catch (OptimisticLockException ole) {
+            return Response.status(Response.Status.CONFLICT).build();
+        } catch (Exception e) {
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+        }
+
+        return Response.ok().build();
+    }
     //Implement the Endpoints
 }
