@@ -6,8 +6,6 @@
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:f="http://java.sun.com/jsf/core">
 <h:head>
-    <!-- Include jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </h:head>
 <h:body>
     <h2>Part that fit to #{carDetails.car.make} #{carDetails.car.model}:</h2>
@@ -34,6 +32,7 @@
     </h:form>
     <h:link outcome="index" value="Back to car owners page"/>
     <br></br>
+    <h:outputText value="#{carDetails.searchResult}" rendered="#{not empty carDetails.searchResult}" />
 
 </h:body>
 </html>

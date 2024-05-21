@@ -42,11 +42,6 @@ public class ProdCarPartNameFinder implements CarPartNameFinder {
             carIdsWithMatchingParts.addAll(carIds);
         }
 
-        try {
-            Thread.sleep(3000); // Simulate intensive work
-        } catch (InterruptedException e) {
-        }
-
         return carIdsWithMatchingParts.size();
     }
 

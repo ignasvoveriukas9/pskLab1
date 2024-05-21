@@ -10,12 +10,6 @@ import javax.enterprise.inject.Alternative;
 public class MockCarPartNameFinder implements CarPartNameFinder {
 
     public Integer findCarPartNameInList(Car car) {
-
-        try {
-            Thread.sleep(3000); // Simulate intensive work
-        } catch (InterruptedException e) {
-        }
-
         return 100;
     }
 }

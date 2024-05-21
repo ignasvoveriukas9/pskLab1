@@ -15,6 +15,6 @@
     </decorators>
 
     <alternatives>
-        <class>lt.vu.usecases.CarPartNameFinder.MockCarPartNameFinder</class>
+       <class>lt.vu.usecases.CarPartNameFinder.MockCarPartNameFinder</class>
     </alternatives>
 </beans>

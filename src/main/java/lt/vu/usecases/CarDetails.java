@@ -54,8 +54,7 @@ public class CarDetails {
 
     @Transactional(Transactional.TxType.REQUIRES_NEW)
     public void search() {
-        CompletableFuture.supplyAsync(() -> carPartNameFinder.findCarPartNameInList(car))
-                .thenAcceptAsync(this::setSearchResult);
+        searchResult = carPartNameFinder.findCarPartNameInList(car);
     }
 
     @PostConstruct
@@ -64,6 +63,7 @@ public class CarDetails {
                 FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
         Integer carId = Integer.parseInt(requestParameters.get("carId"));
         this.car = carsDAO.findOne(carId);
+        search();
     }
 
     @Transactional
